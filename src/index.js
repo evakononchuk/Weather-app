@@ -20,7 +20,7 @@ if (minutes < 10) {
   minutes = `0${minutes}`;
 }
 let selectDayTime = document.querySelector('#day-time');
-selectDayTime.innerHTML = `${day} ${hours}:${minutes}`;
+selectDayTime.innerHTML = `Last updated: ${day} ${hours}:${minutes}`;
 
 //---------------------------------------------
 let apiKey = '535cacbb3f8a0df0aeb4790235b9541f';
