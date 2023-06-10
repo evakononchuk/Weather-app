@@ -1,0 +1,67 @@
+.container {
+  margin: 30px auto;
+  max-width: 600px;
+}
+
+.weather-app {
+  padding: 20px;
+  border: 1px solid #dadde1;
+  border-radius: 5px;
+}
+
+.temperature {
+  display: block;
+}
+.inline {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.inline img {
+  padding-right: 10px;
+}
+
+.celsius {
+  padding: 6px 0 0 6px;
+}
+.day {
+  line-height: 20px;
+  font-size: 16px;
+  margin: 6px 0 6px 0;
+}
+.active {
+  border-left: 1px solid rgba(0, 0, 0, 0.177);
+  border-right: 1px solid rgba(0, 0, 0, 0.177);
+}
+
+.city {
+  margin-top: 20px;
+}
+
+#fahr:hover,
+#celsius:hover {
+  cursor: pointer;
+  color: #2a7cf6;
+}
+
+.form-control {
+  min-width: 200px;
+}
+
+.search {
+  flex: 1 1 200px;
+}
+
+p {
+  margin-top: 10px;
+  font-size: 10px;
+  text-align: left;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
