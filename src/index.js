@@ -1,32 +1,34 @@
-//Set day time
-let days = [
-  'Sunday',
-  'Monday',
-  'Tuesday',
-  'Wednesday',
-  'Thursday',
-  'Friday',
-  'Saturday',
-];
-
-let now = new Date();
-let day = days[now.getDay()];
-let hours = now.getHours();
-if (hours < 10) {
-  hours = `0${hours}`;
+function formatDate(timestamp) {
+  let date = new Date();
+  let hours = date.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+  let minutes = date.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+  let days = [
+    'Sunday',
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+  ];
+  let day = days[date.getDay()];
+  return `${day} ${hours}:${minutes}`;
 }
-let minutes = now.getMinutes();
-if (minutes < 10) {
-  minutes = `0${minutes}`;
-}
-let selectDayTime = document.querySelector('#day-time');
-selectDayTime.innerHTML = `Last updated: ${day} ${hours}:${minutes}`;
 
 //---------------------------------------------
 let apiKey = '535cacbb3f8a0df0aeb4790235b9541f';
 let apiUrl = 'https://api.openweathermap.org/data/2.5/weather?';
+let city = 'Kyiv';
 
 function showCurrentParameters(response) {
+  let selectDayTime = document.querySelector('#day-time');
+  selectDayTime.innerHTML = formatDate(response.data.dt * 1000);
   let city = document.querySelector('#city');
   city.innerHTML = response.data.name;
   let percipitation = document.querySelector('#percipitation');
@@ -41,18 +43,25 @@ function showCurrentParameters(response) {
   temp.innerHTML = Math.round(response.data.main.temp);
   let description = document.querySelector('#description');
   description.innerHTML = response.data.weather[0].description;
+  let icon = document.querySelector('#icon');
+  icon.setAttribute(
+    'src',
+    `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
+  icon.setAttribute('alt', response.data.weather[0].description);
 }
+
+axios
+  .get(`${apiUrl}q=${city}&appid=${apiKey}&units=metric`)
+  .then(showCurrentParameters);
 
 function displayCity(response) {
   let cityInput = document.querySelector('#city');
-  let citySearch = document.querySelector('#city-search');
   cityInput.innerHTML = response.data.name;
+  let citySearch = document.querySelector('#city-search');
   let cityTemp = document.querySelector('#degree');
   cityTemp.innerHTML = response.data.main.temp;
 }
-
-let formButton = document.querySelector('form');
-formButton.addEventListener('submit', searchCity);
 
 function searchCity(event) {
   event.preventDefault();
@@ -60,6 +69,9 @@ function searchCity(event) {
   let cityUrl = `${apiUrl}q=${cityName}&appid=${apiKey}&units=metric`;
   axios.get(cityUrl).then(showCurrentParameters);
 }
+
+let formButton = document.querySelector('form');
+formButton.addEventListener('submit', searchCity);
 
 function showPosition(position) {
   let lat = position.coords.latitude;
@@ -73,5 +85,5 @@ function getCurrentPosition(event) {
   navigator.geolocation.getCurrentPosition(showPosition);
 }
 
-let button = document.querySelector('#current');
-button.addEventListener('click', getCurrentPosition);
+//let button = document.querySelector('#current');
+//button.addEventListener('click', getCurrentPosition);

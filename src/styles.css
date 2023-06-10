@@ -1,3 +1,17 @@
+p {
+  margin-top: 10px;
+  font-size: 10px;
+  text-align: left;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
 .container {
   margin: 30px auto;
   max-width: 600px;
@@ -12,6 +26,7 @@
 .temperature {
   display: block;
 }
+
 .inline {
   display: inline-block;
   vertical-align: top;
@@ -29,6 +44,11 @@
   font-size: 16px;
   margin: 6px 0 6px 0;
 }
+
+li:first-letter {
+  text-transform: capitalize;
+}
+
 .active {
   border-left: 1px solid rgba(0, 0, 0, 0.177);
   border-right: 1px solid rgba(0, 0, 0, 0.177);
@@ -50,18 +70,4 @@
 
 .search {
   flex: 1 1 200px;
-}
-
-p {
-  margin-top: 10px;
-  font-size: 10px;
-  text-align: left;
-}
-
-a {
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
 }

@@ -39,10 +39,12 @@
           </form>
 
           <div class="row">
-            <h1 class="display-6 city" id="city" autocomplete="off">Sydney</h1>
+            <h1 class="display-6 city" id="city" autocomplete="off"></h1>
             <ul class="lead day">
-              <li class="list-group-item" id="day-time"></li>
-              <li class="list-group-item" id="description">Cloudy</li>
+              <li class="list-group-item">
+                Last updated: <span id="day-time"></span>
+              </li>
+              <li class="list-group-item" id="description"></li>
             </ul>
           </div>
 
@@ -50,9 +52,7 @@
             <div class="col">
               <div class="temperature">
                 <div class="inline display-2">
-                  <img
-                    src="https://openweathermap.org/img/wn/10d@2x.png"
-                  /><span id="degree">19</span>
+                  <img src="" id="icon" /><span id="degree">19</span>
                 </div>
                 <div class="inline celsius">
                   <span id="fahr">°F</span> | <span id="celsius">°C</span>
