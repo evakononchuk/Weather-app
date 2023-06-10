@@ -27,6 +27,7 @@ let apiUrl = 'https://api.openweathermap.org/data/2.5/weather?';
 let city = 'Kyiv';
 
 function showCurrentParameters(response) {
+  celsiusTemperature = response.data.main.temp;
   let selectDayTime = document.querySelector('#day-time');
   selectDayTime.innerHTML = formatDate(response.data.dt * 1000);
   let city = document.querySelector('#city');
@@ -85,5 +86,27 @@ function getCurrentPosition(event) {
   navigator.geolocation.getCurrentPosition(showPosition);
 }
 
-//let button = document.querySelector('#current');
-//button.addEventListener('click', getCurrentPosition);
+function showFahrenheit(event) {
+  event.preventDefault();
+  let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
+  celsius.classList.remove('active');
+  fahrenheit.classList.add('active');
+  let currentTemperature = document.querySelector('#degree');
+  currentTemperature.innerHTML = Math.round(fahrenheitTemperature);
+}
+
+function showCelsius(event) {
+  event.preventDefault();
+  let currentTemperature = document.querySelector('#degree');
+  celsius.classList.add('active');
+  fahrenheit.classList.remove('active');
+  currentTemperature.innerHTML = Math.round(celsiusTemperature);
+}
+
+let celsiusTemperature = null;
+
+let fahrenheit = document.querySelector('#fahrenheit-link');
+fahrenheit.addEventListener('click', showFahrenheit);
+
+let celsius = document.querySelector('#celsius-link');
+celsius.addEventListener('click', showCelsius);
