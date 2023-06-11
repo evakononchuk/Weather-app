@@ -56,10 +56,17 @@ axios
   .get(`${apiUrl}q=${city}&appid=${apiKey}&units=metric`)
   .then(showCurrentParameters);
 
+function resetCityInput() {
+  let citySearch = document.querySelector('#city-search');
+  citySearch.value = '';
+}
+
+let backspace = document.querySelector('#backspace');
+backspace.addEventListener('click', resetCityInput);
+
 function displayCity(response) {
   let cityInput = document.querySelector('#city');
   cityInput.innerHTML = response.data.name;
-  let citySearch = document.querySelector('#city-search');
   let cityTemp = document.querySelector('#degree');
   cityTemp.innerHTML = response.data.main.temp;
 }
@@ -69,6 +76,8 @@ function searchCity(event) {
   let cityName = document.querySelector('#city-search').value;
   let cityUrl = `${apiUrl}q=${cityName}&appid=${apiKey}&units=metric`;
   axios.get(cityUrl).then(showCurrentParameters);
+  celsius.classList.add('active');
+  fahrenheit.classList.remove('active');
 }
 
 let formButton = document.querySelector('form');
